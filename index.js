@@ -320,6 +320,23 @@ console.timeEnd("memoized factorial");
 */
 
 // CODE HERE
+class Constant {
+  constructor() {
+      this.cache = {}
+  }
+  
+  memoConst() {
+      if (this.cache.hasOwnProperty(7)) {
+          return this.cache[7]
+      }
+      let answer = 1
+      for (let i = 7; i > 0; i--) {
+          answer *= i
+      }
+      this.cache[7] = answer
+      return answer
+  }
+  }
 
 /*
     Copy and paste the method outside the class and
@@ -328,28 +345,34 @@ console.timeEnd("memoized factorial");
 */
 
 // CODE HERE 
-
+function nonMemoConst() {
+  let answer = 1
+  for(let i = 7; i > 0; i--) {
+      answer *= i
+    }
+  return answer
+}
 /*
     Before you see how much time they take, make a 
     guess as to if one will be faster.
 */
 
-// ANSWER: 
+// ANSWER: The memoized
 
 // Now fill this out and run your file
 
-// CREATE A NEW INSTANCE OF YOUR CLASS
+const myConst = new Constant
 
 console.time("not memoized function time");
-console.log(/* CALL YOUR NONCACHE FN*/)
-console.log(/* CALL YOUR NONCACHE FN*/)
-console.log(/* CALL YOUR NONCACHE FN*/)
-console.log(/* CALL YOUR NONCACHE FN*/)
+console.log(nonMemoConst())
+console.log(nonMemoConst())
+console.log(nonMemoConst())
+console.log(nonMemoConst())
 console.timeEnd("not memoized function time");
 
 console.time("memoized function time");
-console.log(/* CALL THE METHOD FROM YOUR CLASS*/)
-console.log(/* CALL THE METHOD FROM YOUR CLASS*/)
-console.log(/* CALL THE METHOD FROM YOUR CLASS*/)
-console.log(/* CALL THE METHOD FROM YOUR CLASS*/)
+console.log(myConst.memoConst())
+console.log(myConst.memoConst())
+console.log(myConst.memoConst())
+console.log(myConst.memoConst())
 console.timeEnd("memoized function time");
